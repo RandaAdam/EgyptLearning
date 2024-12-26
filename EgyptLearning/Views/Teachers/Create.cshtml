@@ -1,0 +1,94 @@
+﻿@model EgyptLearning.Models.Teacher
+
+@{
+    ViewBag.Title = "Create Teacher";
+}
+
+<h2>Create Teacher</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Teacher</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TeacherName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TeacherName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TeacherName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Salary, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Phone Numbers</label>
+        <div class="col-md-10">
+            <div id="phoneNumbersContainer">
+                <input type="text" class="form-control phone-number-input" name="phoneNumbers" placeholder="Add Phone Number" />
+            </div>
+            <button type="button" id="addPhoneNumber" class="btn btn-default">Add Phone Number</button>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Qualifications</label>
+        <div class="col-md-10">
+            <div id="QualificationsContainer">
+                <input type="text" class="form-control qualification-input" name="qualifications" placeholder="Add Qualification" />
+            </div>
+            <button type="button" id="addQualification" class="btn btn-default">Add Qualification</button>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
+<script>
+    // Add Phone Number Field
+    document.getElementById("addPhoneNumber").addEventListener("click", function () {
+        // Create a new input element for a phone number
+        var newInput = document.createElement("input");
+        newInput.type = "text";
+        newInput.name = "phoneNumbers";
+        newInput.className = "form-control phone-number-input";
+        newInput.placeholder = "Add Phone Number";
+
+        // Append the new input to the container
+        var container = document.getElementById("phoneNumbersContainer");
+        if (container != null) {
+            container.appendChild(newInput);
+        }
+    });
+
+    // Add Phone Number Field
+    document.getElementById("addQualification").addEventListener("click", function () {
+        // Create a new input element for a phone number
+        var newInput = document.createElement("input");
+        newInput.type = "text";
+        newInput.name = "qualifications";
+        newInput.className = "form-control phone-number-input";
+        newInput.placeholder = "Add Qualification";
+
+        // Append the new input to the container
+        var container = document.getElementById("qualificationsContainer");
+        if (container != null) {
+            container.appendChild(newInput);
+        }
+    });
+</script>
